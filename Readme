@@ -1,0 +1,51 @@
+# Projet Café
+
+Application web de gestion de café développée en équipe.
+
+## Équipe
+
+| Membre | Rôle |
+|---|---|
+| Tom Cizeau | Frontend |
+| Tom Audry | Backend — Lead |
+| Ivan Lhomme Ageorges | Backend |
+
+
+## Structure du projet
+
+```text
+projet_cafe/
+├── backend/
+│   ├── Core/
+│   │   └── Database.php
+│   ├── public/
+│   │   └── index.php
+│   ├── .env.exemple
+│   ├── .gitignore
+│   ├── composer.json
+│   ├── composer.lock
+│   └── schema.sql
+│
+├── frontend/
+│   ├── .vscode/
+│   │   └── extensions.json
+│   ├── public/
+│   │   ├── favicon.svg
+│   │   └── icons.svg
+│   ├── src/
+│   │   ├── types/
+│   │   ├── main.ts
+│   │   └── style.css
+│   ├── .gitignore
+│   ├── bun.lock
+│   ├── index.html
+│   ├── package.json
+│   ├── README.md
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+│
+├── Readme
+└── startServeur.bat
+```
