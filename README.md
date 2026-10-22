@@ -8,14 +8,6 @@
 | Tom Audry            | Backend — Lead |
 | Ivan Lhomme Ageorges | Backend        |
 
-## Équipe
-
-| Membre               | Rôle           |
-| -------------------- | -------------- |
-| Tom Cizeau           | Frontend       |
-| Tom Audry            | Backend — Lead |
-| Ivan Lhomme Ageorges | Backend        |
-
 ## Structure du projet
 
 ```
