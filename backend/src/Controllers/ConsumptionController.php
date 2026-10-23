@@ -96,7 +96,7 @@ class ConsumptionController {
             return ProblemDetailsResponse::create(
                 $response,
                 429,
-                'Caffeine Exceeded',
+                'Caffeine Limit Exceeded',
                 "La consomation de caffeine dépasse la limite max de caffeine par jour (" . (string)Consumption::$MAX_CAFFEINE_PER_DAY_MG . " mg)."
             );
         }

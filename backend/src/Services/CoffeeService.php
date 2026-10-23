@@ -131,7 +131,7 @@ class CoffeeService {
             AND consumed_at <= :date
         ');
 
-        $req->bindValue(':developerName', $developerName, PDO::PARAM_INT);
+        $req->bindValue(':developerName', $developerName, PDO::PARAM_STR);
         $req->bindValue(':morningDate', (new DateTime($date))->format('Y-m-d').' 00:00:00', PDO::PARAM_STR);
         $req->bindValue(':date', $date, PDO::PARAM_STR);
 
