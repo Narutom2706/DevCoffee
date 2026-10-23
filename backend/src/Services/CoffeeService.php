@@ -21,7 +21,7 @@ class CoffeeService {
         ), $rows);
     }
 
-    public function getDrinksById(int $id): ?Drink {
+    public function getDrinkById(int $id): ?Drink {
         $req = $this->pdo->prepare('SELECT id, name, caffeine_mg, volume_ml FROM drinks WHERE id = :id');
         $req->bindValue(':id', $id, PDO::PARAM_INT);
         $req->execute();
@@ -37,10 +37,21 @@ class CoffeeService {
         );
     }
 
+    public function getDrinkCaffeineById(int $id): ?int {
+        $req = $this->pdo->prepare('SELECT caffeine_mg FROM drinks WHERE id = :id');
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        $r = $req->fetch();
+        
+        if (!$r) return null;
+
+        return (int)$r['caffeine_mg'];
+    }
+
     public function createDrink(string $name, int $caffeineMg, int $volumeMl): Drink {
         $req = $this->pdo->prepare('
-        INSERT INTO drinks (name, caffeine_mg, volume_ml)
-        VALUES (:name, :caffeineMg, :volumeMl)
+            INSERT INTO drinks (name, caffeine_mg, volume_ml)
+            VALUES (:name, :caffeineMg, :volumeMl)
         ');
         $req->bindValue(':name', $name, PDO::PARAM_STR);
         $req->bindValue(':caffeineMg', $caffeineMg, PDO::PARAM_INT);
@@ -80,12 +91,17 @@ class CoffeeService {
         );
     }
 
-    public function createConsumption(int $drinkId, string $developerName): Consumption {
+    public function createConsumption(int $drinkId, string $developerName): ?Consumption {
         $consumedAt = (new DateTime())->format('Y-m-d H:i:s');
+        $drinkCaffeine = $this->getDrinkCaffeineById($drinkId);
+
+        if (!$drinkCaffeine || ($this->getDeveloperCaffeineConsumedByDate($developerName, $consumedAt) + $drinkCaffeine) > Consumption::$MAX_CAFFEINE_PER_DAY_MG ) {
+            return null;
+        }
 
         $req = $this->pdo->prepare('
-        INSERT INTO consumptions (drink_id, developer_name, consumed_at)
-        VALUES (:drinkId, :developerName, :consumedAt)
+            INSERT INTO consumptions (drink_id, developer_name, consumed_at)
+            VALUES (:drinkId, :developerName, :consumedAt)
         ');
         $req->bindValue(':drinkId', $drinkId, PDO::PARAM_INT);
         $req->bindValue(':developerName', $developerName, PDO::PARAM_STR);
@@ -103,5 +119,30 @@ class CoffeeService {
         $req->execute();
 
         return $req->rowCount() > 0;
+    }
+
+    public function getDeveloperCaffeineConsumedByDate(string $developerName, string $date): int {
+        $req = $this->pdo->prepare('
+            SELECT drinks.caffeine_mg FROM drinks
+            JOIN consumptions ON consumptions.drink_id = drinks.id
+            WHERE developer_name = :developerName
+            AND consumed_at >= :morningDate
+            AND consumed_at <= :date
+        ');
+
+        $req->bindValue(':developerName', $developerName, PDO::PARAM_INT);
+        $req->bindValue(':moringDate', $date->format('Y-m-d').' 00:00:00', PDO::PARAM_STR);
+        $req->bindValue(':date', $date, PDO::PARAM_STR);
+
+        $req->execute();
+        $rows = $req->fetchAll();
+
+        $caffeineConsumed = 0;
+
+        foreach ($rows as $row) {
+            $caffeineConsumed += (int)$row['caffeine_mg'];
+        }
+
+        return $caffeineConsumed;
     }
 }
