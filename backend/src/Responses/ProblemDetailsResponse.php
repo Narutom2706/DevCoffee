@@ -16,7 +16,7 @@ class ProblemDetailsResponse {
             'status' => $status,
             'detail' => $detail
         ];
-        $response->getBody()->write(json_encode($payload, JSON_UNESCAPED_SLASHES, JSON_PRETTY_PRINT));
+        $response->getBody()->write((string)json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
         return $response
             ->withHeader('Content-Type', 'application/problem+json')
             ->withStatus($status);

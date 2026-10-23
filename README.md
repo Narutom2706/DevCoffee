@@ -44,7 +44,20 @@ projet_cafe/
 │   │   ├── favicon.svg
 │   │   └── icons.svg
 │   ├── src/
+│   │   ├── assets/
+│   │   │   ├── hero.png
+│   │   │   ├── vite.svg
+│   │   │   └── vue.svg
+│   │   ├── components/
+│   │   │   ├── ConsumptionForm.vue
+│   │   │   ├── ConsumptionList.vue
+│   │   │   ├── DrinkModal.vue
+│   │   │   └── EcoBadge.vue
+│   │   ├── composables/
+│   │   │   └── useCoffee.ts
 │   │   ├── types/
+│   │   │   └── coffee.ts
+│   │   ├── App.vue
 │   │   ├── main.ts
 │   │   └── style.css
 │   ├── .gitignore
