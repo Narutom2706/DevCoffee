@@ -1,7 +1,6 @@
 <template>
   <div class="card form-card">
     <div class="card-header">
-      <div class="header-icon">☕</div>
       <div>
         <h2>Ajouter une Consommation</h2>
         <p class="subtitle">Enregistrez votre dose de caféine quotidienne</p>
@@ -59,7 +58,7 @@
       <div v-if="selectedDrink" class="caffeine-preview">
         <span class="preview-label">Apport de caféine :</span>
         <span class="preview-badge" :class="getBadgeClass(selectedDrink.caffeineMg)">
-          ⚡ +{{ selectedDrink.caffeineMg }} mg
+          {{ selectedDrink.caffeineMg }} mg
         </span>
         <span class="preview-note">Limite max journalière : 400 mg</span>
       </div>
@@ -126,17 +125,6 @@ const handleSubmit = () => {
   align-items: center;
   gap: 14px;
   margin-bottom: 22px;
-}
-
-.header-icon {
-  width: 44px;
-  height: 44px;
-  background: #fef3c7;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
 }
 
 h2 {

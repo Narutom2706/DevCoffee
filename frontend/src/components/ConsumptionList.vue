@@ -1,17 +1,16 @@
 <template>
   <div class="card history-card">
     <div class="card-header">
-      <div class="header-icon">📋</div>
       <div class="header-info">
         <h2>Historique des Consommations</h2>
         <p class="subtitle">20 dernières doses enregistrées (triées par date décroissante)</p>
       </div>
       <button class="btn-refresh" @click="$emit('refresh')" title="Rafraîchir">
-        🔄
+        Rafraichir
       </button>
     </div>
     <div v-if="consumptions.length === 0" class="empty-state">
-      <span class="empty-icon">☕</span>
+      <span class="empty-icon">Vide</span>
       <p>Aucune consommation enregistrée pour le moment.</p>
     </div>
     <div v-else class="table-wrapper">
@@ -37,7 +36,7 @@
               <span class="drink-badge">{{ c.drinkName || 'Boisson' }}</span>
             </td>
             <td class="col-caffeine">
-              <span class="caffeine-pill">⚡ {{ c.caffeineMg }} mg</span>
+              <span class="caffeine-pill">{{ c.caffeineMg }} mg</span>
             </td>
             <td class="col-date">{{ formatDate(c.consumedAt) }}</td>
             <td class="col-action text-right">
@@ -47,7 +46,7 @@
                 @click="handleDelete(c)"
                 :title="`Supprimer consommation #${c.id}`"
               >
-                🗑️ Supprimer
+                Supprimer
               </button>
             </td>
           </tr>
@@ -113,17 +112,6 @@ const formatDate = (dateStr: string) => {
   margin-bottom: 20px;
 }
 
-.header-icon {
-  width: 44px;
-  height: 44px;
-  background: #f1f5f9;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-}
-
 .header-info {
   flex: 1;
 }
@@ -142,6 +130,7 @@ h2 {
 }
 
 .btn-refresh {
+  color: #000000;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
@@ -153,7 +142,7 @@ h2 {
 
 .btn-refresh:hover {
   background: #f1f5f9;
-  transform: rotate(45deg); /* c'est rigolo 😅😁 */
+  transform: rotate(45deg); /* c'est rigolo */
 }
 
 .empty-state {

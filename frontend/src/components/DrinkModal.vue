@@ -2,7 +2,7 @@
   <div v-if="isOpen" class="modal-backdrop" @click.self="$emit('close')">
     <div class="modal-card">
       <div class="modal-header">
-        <h3>✨ Ajouter une Boisson au Catalogue</h3>
+        <h3>Ajouter une Boisson au Catalogue</h3>
         <button class="btn-close" @click="$emit('close')">✕</button>
       </div>
       <form @submit.prevent="handleSubmit" class="modal-form">

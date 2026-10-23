@@ -3,7 +3,6 @@
     <header class="navbar">
       <div class="navbar-container">
         <div class="brand">
-          <span class="brand-icon">☕</span>
           <div class="brand-text">
             <h1>DevCoffee Tracker</h1>
             <span class="badge-status">API RESTful PHP 8 & Slim 4</span>
@@ -19,7 +18,7 @@
     <main class="main-container">
       <transition name="fade">
         <div v-if="errorMessage" class="alert-rfc-error" role="alert">
-          <div class="alert-icon">🚨</div>
+          <div class="alert-icon">alerte</div>
           <div class="alert-content">
             <h3 class="alert-title">{{ errorTitle || 'Erreur API RFC 7807' }}</h3>
             <p class="alert-detail">{{ errorMessage }}</p>
@@ -29,7 +28,7 @@
       </transition>
       <transition name="fade">
         <div v-if="successMessage" class="alert-success" role="status">
-          <div class="alert-icon">✅</div>
+          <div class="alert-icon">nickel</div>
           <div class="alert-content">
             <p class="alert-detail">{{ successMessage }}</p>
           </div>
