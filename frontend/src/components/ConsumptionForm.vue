@@ -274,7 +274,7 @@ label {
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, #b45309 0%, #92400e 100%);
+  background: #92400e;
   box-shadow: 0 6px 16px rgba(217, 119, 6, 0.35);
   transform: translateY(-1px);
 }
