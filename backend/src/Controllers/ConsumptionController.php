@@ -59,7 +59,7 @@ class ConsumptionController {
 
         $payload = [
             'id' => $consumption->id,
-            'drinkName' => "ma bite", //$drink->name,
+            'drinkName' => $drink->name,
             'caffeineMg' => $drink->caffeineMg,
             'developerName' => $consumption->developerName,
             'consumedAt' => $consumption->consumedAt
