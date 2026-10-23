@@ -71,7 +71,7 @@ class CoffeeService {
             (int)$r['id'],
             (int)$r['drink_id'],
             $r['developer_name'],
-            (int)$r['consumed_at']
+            $r['consumed_at']
         ), $rows);
     }
 
@@ -87,11 +87,12 @@ class CoffeeService {
             (int)$r['id'],
             (int)$r['drink_id'],
             $r['developer_name'],
-            (int)$r['consumed_at']
+            $r['consumed_at']
         );
     }
 
     public function createConsumption(int $drinkId, string $developerName): ?Consumption {
+        date_default_timezone_set('Europe/Paris');
         $consumedAt = (new DateTime())->format('Y-m-d H:i:s');
         $drinkCaffeine = $this->getDrinkCaffeineById($drinkId);
 
@@ -131,7 +132,7 @@ class CoffeeService {
         ');
 
         $req->bindValue(':developerName', $developerName, PDO::PARAM_INT);
-        $req->bindValue(':moringDate', $date->format('Y-m-d').' 00:00:00', PDO::PARAM_STR);
+        $req->bindValue(':morningDate', (new DateTime($date))->format('Y-m-d').' 00:00:00', PDO::PARAM_STR);
         $req->bindValue(':date', $date, PDO::PARAM_STR);
 
         $req->execute();
