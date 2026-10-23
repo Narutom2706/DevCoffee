@@ -1,13 +1,17 @@
 <?php
+
 namespace App\Services;
+
 use App\Models\Consumption;
 use App\Models\Drink;
 use DateTime;
 use PDO;
+use Psr\Log\LoggerInterface;
 
 class CoffeeService {
     public function __construct(
-        private PDO $pdo
+        private PDO $pdo,
+        private LoggerInterface $logger
     ) {}
     public function getAllDrinks(): array {
         $req = $this->pdo->query('SELECT id, name, caffeine_mg, volume_ml FROM drinks');
@@ -60,6 +64,10 @@ class CoffeeService {
 
         $id = (int)$this->pdo->lastInsertId();
 
+        if ($this->logger) {
+            $this->logger->info("Nouvelle boisson créée: ID {$id} - {$name} ({$caffeineMg}mg / {$volumeMl}ml)");
+        }
+
         return new Drink($id, $name, $caffeineMg, $volumeMl);
     }
 
@@ -97,6 +105,9 @@ class CoffeeService {
         $drinkCaffeine = $this->getDrinkCaffeineById($drinkId);
 
         if (!$drinkCaffeine || ($this->getDeveloperCaffeineConsumedByDate($developerName, $consumedAt) + $drinkCaffeine) > Consumption::$MAX_CAFFEINE_PER_DAY_MG ) {
+            if ($this->logger) {
+                $this->logger->warning("Dépassement de la limite de caffeine : {$developerName}");
+            }
             return null;
         }
 
@@ -111,6 +122,10 @@ class CoffeeService {
 
         $id = (int)$this->pdo->lastInsertId();
 
+        if ($this->logger) {
+            $this->logger->warning("Création de la consomation de {$developerName}");
+        }
+
         return new Consumption($id, $drinkId, $developerName, $consumedAt);
     }
 
@@ -118,6 +133,10 @@ class CoffeeService {
         $req = $this->pdo->prepare('DELETE FROM consumptions WHERE id = :id');
         $req->bindValue(':id', $id, PDO::PARAM_INT);
         $req->execute();
+
+        if ($this->logger) {
+            $this->logger->warning("Suppression reussie d'une consomation");
+        }
 
         return $req->rowCount() > 0;
     }
