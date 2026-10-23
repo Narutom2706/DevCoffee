@@ -1,8 +1,8 @@
 {
-  "name": "archifiox/backend",
+  "name": "projet_cafe/backend",
   "autoload": {
     "psr-4": {
-      "Archifiox\\Backend\\": "src/"
+      "App\\": "src/"
     }
   },
   "authors": [
