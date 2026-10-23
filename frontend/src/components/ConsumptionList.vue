@@ -207,8 +207,9 @@ td {
 .dev-avatar {
   width: 28px;
   height: 28px;
-  background: #dbeafe;
-  color: #1e40af;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid black;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -223,7 +224,7 @@ td {
 }
 
 .drink-badge {
-  background: #fef3c7;
+  background: #ffffff;
   color: #92400e;
   padding: 3px 8px;
   border-radius: 6px;
@@ -247,9 +248,9 @@ td {
 }
 
 .btn-delete {
-  background: #fee2e2;
+  background: #FFFFFF;
   color: #b91c1c;
-  border: 1px solid #fecaca;
+  border: 1px solid #b91c1c;
   padding: 6px 12px;
   border-radius: 8px;
   font-size: 0.78rem;
@@ -259,7 +260,7 @@ td {
 }
 
 .btn-delete:hover {
-  background: #dc2626;
+  background: #b91c1c;
   color: #ffffff;
   border-color: #dc2626;
 }

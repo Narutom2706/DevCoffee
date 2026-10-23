@@ -268,7 +268,7 @@ label {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  background: #b45309;
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
 }

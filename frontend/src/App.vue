@@ -178,7 +178,7 @@ body {
   font-size: 0.72rem;
   font-weight: 600;
   color: #d97706;
-  background: #fffbeb;
+  background: #ffffff;
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -187,9 +187,9 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #fef2f2;
+  background: #ffffff;
   color: #991b1b;
-  border: 1px solid #fecaca;
+  border: 1px solid #991b1b;
   padding: 6px 14px;
   border-radius: 9999px;
   font-size: 0.82rem;
@@ -199,7 +199,7 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #ef4444;
+  background: #991b1b;
   animation: pulse 1.5s infinite;
 }
 
