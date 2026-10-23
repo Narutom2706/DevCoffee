@@ -209,6 +209,16 @@ label {
   cursor: pointer;
 }
 
+.select option {
+  background: #ffffff;
+  color: #1e293b;
+}
+
+.select option:hover {
+  background: #007bff;
+  color: #ffffff;
+}
+
 .caffeine-preview {
   display: flex;
   align-items: center;
