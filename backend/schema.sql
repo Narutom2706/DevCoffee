@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS consumptions;
 DROP TABLE IF EXISTS drinks;
 SET FOREIGN_KEY_CHECKS = 1;
 
--- 1. Table drinks (Catalogue des boissons)
 CREATE TABLE IF NOT EXISTS drinks (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -14,7 +13,6 @@ CREATE TABLE IF NOT EXISTS drinks (
     volume_ml INT NOT NULL
 ) ENGINE=InnoDB;
 
--- 2. Table consumptions (Historique des consommations)
 CREATE TABLE IF NOT EXISTS consumptions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     drink_id INT NOT NULL,
@@ -23,7 +21,6 @@ CREATE TABLE IF NOT EXISTS consumptions (
     CONSTRAINT fk_consumptions_drink FOREIGN KEY (drink_id) REFERENCES drinks(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Jeu de données de test initial dans drinks
 INSERT INTO drinks (id, name, caffeine_mg, volume_ml) VALUES
 (1, 'Espresso', 80, 30),
 (2, 'Café Allongé', 110, 120),
@@ -32,7 +29,6 @@ INSERT INTO drinks (id, name, caffeine_mg, volume_ml) VALUES
 (5, 'Cappuccino', 90, 150),
 (6, 'Thé Vert Matcha', 70, 250);
 
--- Consommations initiales de test
 INSERT INTO consumptions (drink_id, developer_name, consumed_at) VALUES
 (1, 'Thomas', DATE_SUB(NOW(), INTERVAL 3 HOUR)),
 (2, 'Sarah', DATE_SUB(NOW(), INTERVAL 2 HOUR)),

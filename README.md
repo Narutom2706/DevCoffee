@@ -17,6 +17,20 @@ projet_cafe/
 │   │   └── Database.php
 │   ├── public/
 │   │   └── index.php
+│   ├── src/
+│   │   ├── Controllers/
+│   │   │   ├── ConsumptionController.php
+│   │   │   └── DrinkController.php
+│   │   ├── Middlewares/
+│   │   │   ├── CorsMiddleware.php
+│   │   │   └── EcoMetricsMiddleware.php
+│   │   ├── Models/
+│   │   │   ├── Consumption.php
+│   │   │   └── Drink.php
+│   │   ├── Responses/
+│   │   │   └── ProblemDetailsResponse.php
+│   │   └── Services/
+│   │       └── CoffeeService.php
 │   ├── .env.exemple
 │   ├── .gitignore
 │   ├── composer.json
@@ -32,5 +46,17 @@ projet_cafe/
 │   ├── src/
 │   │   ├── types/
 │   │   ├── main.ts
-│   │   └── style
+│   │   └── style.css
+│   ├── .gitignore
+│   ├── bun.lock
+│   ├── index.html
+│   ├── package.json
+│   ├── README.md
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+│
+├── README.md
+└── startServeur.bat
 ```
